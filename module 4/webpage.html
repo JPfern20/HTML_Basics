@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technological Institute of the Philippines</title>
+    <style>
+        /* T.I.P. Theme: Black and Gold */
+        :root {
+            --tip-gold: #FFD700;
+            --tip-dark-gold: #C5A000;
+            --tip-black: #1A1A1A;
+            --tip-white: #FFFFFF;
+            --tip-gray: #333333;
+            --tip-light-gray-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--tip-gray);
+            color: var(--tip-white);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0; /* Remove default body padding */
+        }
+
+        /* --- New Header Styles (from previous response) --- */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: var(--tip-white); /* White background as in the image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-top: 5px solid var(--tip-gold); /* Top yellow border */
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container {
+            background-color: var(--tip-black);
+            color: var(--tip-gold);
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            border-left: 3px solid var(--tip-gold);
+        }
+
+        .site-title {
+            color: var(--tip-black);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav ul li a {
+            color: var(--tip-dark-gold);
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav ul li a:hover {
+            color: var(--tip-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--tip-black);
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .main-nav {
+                display: none; position: absolute; top: 70px; right: 0;
+                background-color: var(--tip-black); width: 100%; box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            }
+            .main-nav.active { display: block; }
+            .main-nav ul { flex-direction: column; width: 100%; text-align: center; padding: 10px 0; }
+            .main-nav ul li a { color: var(--tip-white); display: block; padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .main-nav ul li a:hover { background-color: var(--tip-dark-gray); color: var(--tip-gold); }
+        }
+        /* --- End Header Styles --- */
+
+
+        /* --- Original Content Styles (Integrated) --- */
+        .container {
+            max-width: 900px;
+            margin: 40px auto; /* Added margin to separate from fixed header */
+            background: var(--tip-gray);
+            border: 2px solid var(--tip-gold);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        /* The previous 'header' in the user's code now becomes a 'content-header' within the container */
+        .content-header { 
+            background-color: var(--tip-gold);
+            color: var(--tip-black);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--tip-dark-gold);
+        }
+
+        .content-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content-padding {
+            padding: 30px;
+        }
+
+        h2 {
+            border-left: 5px solid var(--tip-gold);
+            padding-left: 15px;
+            color: var(--tip-gold);
+            text-transform: uppercase;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--tip-light-gray-bg);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        ul { list-style: none; padding: 0; }
+
+        li {
+            background: var(--tip-black);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid var(--tip-gold);
+            display: flex;
+            justify-content: space-between;
+            transition: 0.3s;
+            cursor: help;
+        }
+
+        li:hover {
+            background: var(--tip-dark-gold);
+            color: var(--tip-black);
+        }
+
+        li[data-event-type="outdoor"]::after { content: "📍 Outdoor"; font-weight: bold; }
+        li[data-event-type="indoor"]::after { content: "🏠 Indoor"; font-weight: bold; }
+
+        .date { font-weight: bold; color: var(--tip-gold); }
+        li:hover .date { color: var(--tip-black); }
+
+        .contact-info {
+            cursor: pointer; padding: 10px; border: 1px dashed var(--tip-gold);
+            display: inline-block; margin-top: 10px;
+        }
+
+        .contact-info:active { background-color: var(--tip-gold); color: var(--tip-black); }
+
+        footer {
+            text-align: center; padding: 20px; font-size: 0.9rem; color: var(--tip-gold);
+        }
+        /* --- End Original Content Styles --- */
+    </style>
+</head>
+<body>
+
+    <!-- Integrated Header from previous response -->
+    <header class="main-header" id="home">
+        <div class="header-left">
+            <div class="logo-container">TIP</div>
+            <h1 class="site-title">Technological Institute of the Philippines</h1>
+        </div>
+        
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a href="#mission-statement">Mission & Vision</a></li>
+                <li><a href="#upcoming-events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <!-- The original user's header content is now a section within the container -->
+        <div class="content-header" id="about">
+            <h1 onclick="alert('Welcome to T.I.P. - Global Excellence!')">T.I.P.</h1>
+            <p><strong>Welcome to TIP, We are top of the world in technological education.</strong></p>
+        </div>
+
+        <div class="content-padding">
+            <!-- Mission Section -->
+            <div class="section" id="mission-statement">
+                <h2>Mission & Vision</h2>
+                <p>Through digitalization and innovation in academic approaches, T.I.P. aims to develop students who achieve optimal outcomes by collaborating with faculty, staff, and industry partners.</p>
+                <p><strong>Core Values:</strong></p>
+                <code style="color: var(--tip-gold);">Innovation • Collaboration • Community • Service • Digital Savvy • Adaptability</code>
+            </div>
+
+            <!-- Events Section with Data Attributes -->
+            <div class="section" id="upcoming-events">
+                <h2>Upcoming Events</h2>
+                <ul>
+                    <li data-event-type="indoor" title="Annual Science & Tech Showcase">
+                        <span>Science Fair</span>
+                        <span class="date">June 10, 2026</span>
+                    </li>
+                    <li data-event-type="outdoor" title="Creative Arts and Design">
+                        <span>Art Exhibition</span>
+                        <span class="date">June 15, 2026</span>
+                    </li>
+                    <li data-event-type="outdoor" title="Inter-departmental Sports Competition">
+                        <span>Sports Day</span>
+                        <span class="date">June 20, 2026</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact Section with Event Attribute -->
+            <div class="section" id="contact">
+                <h2>Contact Us</h2>
+                <p>Interested in joining? Click the details below to copy.</p>
+                
+                <div class="contact-info" 
+                     onclick="copyToClipboard('info@tip.edu.ph')" 
+                     title="Click to copy email">
+                    <strong>Email:</strong> info@tip.edu.ph
+                </div>
+                <br>
+                <div class="contact-info" 
+                     onclick="copyToClipboard('555-1234')" 
+                     title="Click to copy phone number">
+                    <strong>Phone:</strong> (02) 555-1234
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Technological Institute of the Philippines | Excellence through Technology
+        </footer>
+    </div>
+
+    <script>
+        // Simple JS function to toggle the mobile menu visibility (for the sticky header)
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // JS function to copy contact info (from original user code)
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('Copied to clipboard: ' + text);
+        }
+
+        console.log("T.I.P. Portal Loaded Successfully.");
+    </script>
+
+</body>
+</html>
